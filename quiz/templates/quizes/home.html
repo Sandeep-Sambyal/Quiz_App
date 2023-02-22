@@ -1,0 +1,57 @@
+{% extends 'index.html'%}
+
+{% block body %}
+    <!-- <div class="container"> -->
+        <!-- Content here -->
+        <div class="row">
+            <div class="col-9 m-auto pt-5">
+                {% if quizes %}
+                    <p>You have following quizes assigned </p>
+
+                    {% for i in quizes %}
+
+                    <div class="card text-center mt-2">
+                        <div class="card-header">
+                          Quiz
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title">{{i.quiz.title}}</h5>
+                          <p class="card-text">{{i.quiz.description}}</p>
+                          <a href="#" class="btn btn-primary">Start Test</a>
+                        </div>
+                        <div class="card-footer text-danger">
+                          Difficulty: {{i.diff_level | capfirst }}
+                        </div>
+                      </div>
+                    {% endfor %}
+
+                {% else %}
+                    <p>You have NO quizes assigned </p>
+                {% endif %}
+            </div>
+            
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                ...
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        
+    <!-- </div> -->
+{% endblock %}
