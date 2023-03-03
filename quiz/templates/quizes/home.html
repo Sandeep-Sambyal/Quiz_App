@@ -1,4 +1,5 @@
 {% extends 'index.html'%}
+{% load static %}
 
 {% block body %}
     <!-- <div class="container"> -->
@@ -17,7 +18,16 @@
                         <div class="card-body">
                           <h5 class="card-title">{{i.quiz.title}}</h5>
                           <p class="card-text">{{i.quiz.description}}</p>
-                          <a href="#" class="btn btn-primary">Start Test</a>
+                          <!-- <a href="#" class="btn btn-primary">Start Test</a> -->
+                          <button type="button" 
+                                  class="btn btn-primary modal-button"
+                                  data-bs-toggle="modal" 
+                                  data-bs-target="#confirmModal"
+                                  data-pk="{{i.quiz.pk}}" 
+                                  data-quiz="{{i.quiz.title}}"
+                                  data-difficulty="{{i.diff_level}}">
+                            Start Test
+                          </button>
                         </div>
                         <div class="card-footer text-danger">
                           Difficulty: {{i.diff_level | capfirst }}
@@ -34,19 +44,19 @@
 
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Start Test</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                ...
+                Are you sure you want to start test?
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="starttest">Start Test</button>
                 </div>
             </div>
             </div>
@@ -54,4 +64,7 @@
 
         
     <!-- </div> -->
+{% endblock %}
+{% block js %} 
+        <script src="{% static 'main.js' %}" defer></script>
 {% endblock %}
