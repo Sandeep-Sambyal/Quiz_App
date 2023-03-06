@@ -45,6 +45,10 @@ class Question(models.Model):
         questions = list(self.answer_set.all())
         return questions
 
+    def get_correct_answer(self):
+        answer = self.answer_set.filter(correct=True)
+        return answer
+
 class Answer(models.Model):
     option = models.CharField(max_length=1000)
     correct = models.BooleanField(default=False)

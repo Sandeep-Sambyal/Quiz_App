@@ -6,34 +6,15 @@
         <!-- Content here -->
         <div class="row container lg-9 m-auto">
             {% for que in questions %}
-                    {% for mykey,myvalue in que.items %}                    
+                    {% for mykey,myvalue in que.items %}             
                         <div class="question ml-sm-5 pl-sm-5 pt-2">
-                            <div class="py-2 h5"><b>Q. {{ mykey }} </b></div>
+                            <div class="py-2 h5"><b>Q. {{ mykey }}</b></div>
                     
                         {% for i in myvalue %}
 
                         <div>
-                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."> {{i}}
+                            <input class="form-check-input answers" type="checkbox" id="checkboxNoLabel" value="{{i}}" name="{{mykey}}" aria-label="..."> {{i}}
                           </div>
-                        
-                        <!-- <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
-                            <label class="options">{{i}}
-                                <input type="radio" name="radio">
-                                <span class="checkmark"></span>
-                            </label> -->
-                            <!-- <label class="options">Nonprofit Owner or Employee
-                                <input type="radio" name="radio">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="options">Journalist or Activist
-                                <input type="radio" name="radio">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="options">Other
-                                <input type="radio" name="radio">
-                                <span class="checkmark"></span>
-                            </label> -->
-                        <!-- </div> -->
                         {% endfor %}
                     {% endfor %}
                     
@@ -43,11 +24,17 @@
             
         </div>
 
+        <form id="quiz-form" class="d-flex align-items-center justify-content-center">
+            <!-- {% csrf_token %} -->
+            <div id="quiz-box"></div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+
 
         
         
     <!-- </div> -->
 {% endblock %}
 {% block js %} 
-        <script src="{% static 'main.js' %}" defer></script>
+        <script src="{% static 'quiz.js' %}" defer></script>
 {% endblock %}
