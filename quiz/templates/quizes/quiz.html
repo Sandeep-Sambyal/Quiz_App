@@ -1,0 +1,40 @@
+{% extends 'index.html'%}
+{% load static %}
+
+{% block body %}
+    <!-- <div class="container"> -->
+        <!-- Content here -->
+        <div class="row container lg-9 m-auto">
+            {% for que in questions %}
+                    {% for mykey,myvalue in que.items %}             
+                        <div class="question ml-sm-5 pl-sm-5 pt-2">
+                            <div class="py-2 h5"><b>Q. {{ mykey }}</b></div>
+                    
+                        {% for i in myvalue %}
+
+                        <div>
+                            <input class="form-check-input answers" type="checkbox" id="checkboxNoLabel" value="{{i}}" name="{{mykey}}" aria-label="..."> {{i}}
+                          </div>
+                        {% endfor %}
+                    {% endfor %}
+                    
+                </div>
+            {% endfor %}
+                
+            
+        </div>
+
+        <form id="quiz-form" class="d-flex align-items-center justify-content-center">
+            <!-- {% csrf_token %} -->
+            <div id="quiz-box"></div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+
+
+        
+        
+    <!-- </div> -->
+{% endblock %}
+{% block js %} 
+        <script src="{% static 'quiz.js' %}" defer></script>
+{% endblock %}
